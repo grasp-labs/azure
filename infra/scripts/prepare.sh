@@ -257,7 +257,7 @@ AddKeyToVault $AZURE_VAULT "${AZURE_STORAGE}-storage-key" $STORAGE_KEY
 
 
 cat > .envrc << EOF
-# OSDU ENVIRONMENT ${UNIQUE}
+# ENVIRONMENT ${UNIQUE}
 # ------------------------------------------------------------------------------------------------------
 export RANDOM_NUMBER=${RANDOM_NUMBER}
 export UNIQUE=${UNIQUE}
