@@ -69,7 +69,7 @@ function CreateResourceGroup() {
       OUTPUT=$(az group create --name $1 \
         --location $2 \
         -ojsonc)
-      LOCK=$(az group lock create --name "OSDU-PROTECTED" \
+      LOCK=$(az group lock create --name "GRASPLABS_PROTECTED" \
         --resource-group $1 \
         --lock-type CanNotDelete \
         -ojsonc)

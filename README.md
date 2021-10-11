@@ -45,7 +45,7 @@ export UNIQUE=demo
 After running the script, the `.envrc` will be looking like:
 
 ```bash
-# OSDU ENVIRONMENT demo
+# ENVIRONMENT demo
 # ------------------------------------------------------------------------------------------------------
 export RANDOM_NUMBER=
 export UNIQUE=""
