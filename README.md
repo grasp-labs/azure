@@ -12,7 +12,7 @@ This document assumes one is running a current version of Ubuntu. Windows users 
 
 Currently the versions in use are [Terraform 0.14.5](https://releases.hashicorp.com/terraform/0.14.5/).
 
-> Note: Terraform and Go are recommended to be installed using a [Terraform Version Manager](https://github.com/tfutils/tfenv)
+> Note: Terraform is recommended to be installed using a [Terraform Version Manager](https://github.com/tfutils/tfenv)
 
 
 ### Install the Azure CLI
