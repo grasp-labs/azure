@@ -24,7 +24,8 @@ provider "azurerm" {
 # Private Variables
 #-------------------------------
 locals {
-    resource_group_name = format("%s-%s-%s-rg", var.prefix, local.workspace, random_string.workspace_scope.result)
+    base_name               = "aditro"
+    resource_group_name     = "${local.base_name}-rg"
     graphdb_name            = "${local.base_name}-graph"
 }
 
@@ -34,13 +35,12 @@ locals {
 resource "azurerm_resource_group" "main" {
   name     = local.resource_group_name
   location = var.resource_group_location
-  tags     = var.resource_tags
+  tags     = var.tags
 
   lifecycle {
     ignore_changes = [tags]
   }
 }
-
 
 #-------------------------------
 # CosmosDB
@@ -53,8 +53,8 @@ module "graph_account" {
   primary_replica_location = var.cosmosdb_replica_location
   automatic_failover       = var.cosmosdb_automatic_failover
   consistency_level        = var.cosmosdb_consistency_level
-  graph_databases          = var.cosmos_graph_databases
-  graphs                   = var.cosmos_graphs
+  databases                = var.cosmos_databases
+  sql_collections          = var.cosmos_collections
 
-  resource_tags = var.resource_tags
+  tags = var.tags
 }

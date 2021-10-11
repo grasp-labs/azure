@@ -22,7 +22,7 @@ variable "cosmosdb_automatic_failover" {
   default     = true
 }
 
-variable "cosmos_graph_databases" {
+variable "cosmos_databases" {
   description = "The list of Cosmos DB Graph Databases."
   type = list(object({
     name       = string
@@ -36,18 +36,20 @@ variable "cosmos_graph_databases" {
   ]
 }
 
-variable "cosmos_graphs" {
+variable "cosmos_collections" {
   description = "The list of cosmos graphs to create. Names must be unique per cosmos instance."
   type = list(object({
     name               = string
     database_name      = string
     partition_key_path = string
+    partition_key_version = string
   }))
   default = [
       {
           name = "Employments",
           database_name = "employment-graph",
-          partition_key_path = "id"
+          partition_key_path    = "/id",
+          partition_key_version = null
       }
   ]
 }

@@ -255,3 +255,19 @@ tput setaf 2; echo "Adding Storage Account Secrets to Vault..." ; tput sgr0
 AddKeyToVault $AZURE_VAULT "${AZURE_STORAGE}-storage" $AZURE_STORAGE
 AddKeyToVault $AZURE_VAULT "${AZURE_STORAGE}-storage-key" $STORAGE_KEY
 
+
+cat > .envrc << EOF
+# OSDU ENVIRONMENT ${UNIQUE}
+# ------------------------------------------------------------------------------------------------------
+export RANDOM_NUMBER=${RANDOM_NUMBER}
+export UNIQUE=${UNIQUE}
+export COMMON_VAULT="${AZURE_VAULT}"
+export ARM_TENANT_ID="$(az account show -ojson --query tenantId -otsv)"
+export ARM_ACCESS_KEY="$(az keyvault secret show --id https://$AZURE_VAULT.vault.azure.net/secrets/sttf${RANDOM_NUMBER}-storage-key --query value -otsv)"
+export TF_VAR_remote_state_account="$(az keyvault secret show --id https://$AZURE_VAULT.vault.azure.net/secrets/sttf${RANDOM_NUMBER}-storage --query value -otsv)"
+export TF_VAR_remote_state_container="remote-state-container"
+export TF_VAR_resource_group_location="${AZURE_LOCATION}"
+export TF_VAR_cosmosdb_replica_location="${AZURE_LOCATION}"
+EOF
+
+cp .envrc .envrc_${UNIQUE}
